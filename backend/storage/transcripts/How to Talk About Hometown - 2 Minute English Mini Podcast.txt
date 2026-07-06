@@ -1,0 +1,17 @@
+[0.00 - 11.04]  How to Talk about hometown I live in a city called London.
+[11.04 - 13.32]  This is not London, England.
+[13.32 - 15.78]  It is a city in Canada.
+[15.78 - 22.72]  Some of Canada's cities have the same names as English cities.
+[22.72 - 26.36]  London Canada has many restaurants and cafes.
+[26.36 - 33.64]  For entertainment, you can go to the movie theater or art gallery.
+[33.64 - 39.20]  There is a famous university in London called Western University.
+[39.20 - 45.88]  It is not close to the ocean or lake, so there are no beaches.
+[45.88 - 50.80]  It is a multicultural city, so there are churches, temples and mosques.
+[50.80 - 57.24]  I've been living in London for ten years.
+[57.24 - 60.40]  My favorite part of this city is the nature.
+[60.40 - 70.32]  There are many parks and forests where you can go for walks, runs or have picnics with friends.
+[70.32 - 75.68]  The worst thing about London is that it is far away from other big cities in Canada.
+[75.68 - 84.24]  You need to drive for almost two hours to get to Toronto or Niagara Falls.
+[84.24 - 87.80]  This isolation isn't all bad, however.
+[87.80 - 93.60]  If you drive half an hour outside the city, you can find beautiful quiet forests.
+[93.60 - 96.08]  Overall, I enjoy living in London.
