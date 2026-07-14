@@ -14,6 +14,7 @@ import ClipCard from "../components/ClipCard";
 import ReviewSummary from "../components/ReviewSummary";
 import ConfirmationModal from "../components/ConfirmationModal";
 import { AnimatePresence } from "framer-motion";
+import { approveHighlights } from "../services/api";
 
 /**
  * Results page — displays the highlights returned by the backend.
@@ -29,6 +30,7 @@ export default function Results({ jobResult }) {
   const [clips, setClips] = useState(() => (jobResult?.highlights || []).map(h => ({ ...h, status: h.status || "pending" })));
   const [showModal, setShowModal] = useState(false);
   const [toastMsg, setToastMsg] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     if (jobResult?.highlights) {
@@ -60,9 +62,19 @@ export default function Results({ jobResult }) {
     setShowModal(true);
   };
 
-  const handleConfirmContinue = () => {
+  const handleConfirmContinue = async () => {
     setShowModal(false);
-    console.log("Reviewed Clips:", clips);
+    setIsUploading(true);
+    try {
+      await approveHighlights(jobResult?.thread_id, clips);
+      navigate("/success");
+    } catch (error) {
+      console.error("Upload error:", error);
+      setToastMsg("Instagram upload failed.");
+      setTimeout(() => setToastMsg(null), 3000);
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   // ── Error state ─────────────────────────────────────────────────────────────
@@ -289,14 +301,15 @@ export default function Results({ jobResult }) {
             <div className="flex justify-center mt-6">
               <button
                 onClick={handleContinueClick}
+                disabled={counts.pending > 0 || isUploading}
                 className="btn-gradient px-8 py-3.5 rounded-xl font-medium text-lg w-full max-w-sm transition-all duration-300"
                 style={{
-                  opacity: counts.pending === 0 ? 1 : 0.5,
-                  cursor: counts.pending === 0 ? "pointer" : "not-allowed",
-                  filter: counts.pending === 0 ? "none" : "grayscale(0.5)",
+                  opacity: counts.pending === 0 && !isUploading ? 1 : 0.5,
+                  cursor: counts.pending === 0 && !isUploading ? "pointer" : "not-allowed",
+                  filter: counts.pending === 0 && !isUploading ? "none" : "grayscale(0.5)",
                 }}
               >
-                Continue
+                {isUploading ? "Uploading..." : "Continue"}
               </button>
             </div>
           </div>

@@ -61,10 +61,17 @@ export const resolveClipUrl = (clipPath) => {
 // ─── Future-ready stubs (not yet implemented in backend) ──────────────────────
 
 /**
- * [FUTURE] Approve or reject a highlight for posting.
- * Placeholder for Human-in-the-Loop / LangGraph interrupt support.
+ * Approve or reject highlights for posting.
+ * Completes the Human-in-the-Loop workflow.
+ *
+ * @param {string} thread_id
+ * @param {Array} highlights
+ * @returns {Promise<any>}
  */
-// export const approveHighlight = async (jobId, highlightIndex, approved) => { ... };
+export const approveHighlights = async (thread_id, highlights) => {
+  const response = await api.post("/approve", { thread_id, highlights });
+  return response.data;
+};
 
 /**
  * [FUTURE] Update caption for a highlight before posting.

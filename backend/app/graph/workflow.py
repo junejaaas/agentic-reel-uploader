@@ -8,6 +8,7 @@ from app.agents.video_analysis_agent import video_analysis_agent
 from app.agents.caption_agent import caption_agent
 from app.agents.approval_agent import approval_agent
 from app.agents.finalize_agent import finalize_agent
+from app.agents.instagram_agent import instagram_agent
 from langgraph.checkpoint.memory import InMemorySaver
 
 graph = StateGraph(WorkflowState)
@@ -20,6 +21,7 @@ graph.add_node("video_analysis", video_analysis_agent)
 graph.add_node("caption", caption_agent)
 graph.add_node("approval", approval_agent)
 graph.add_node("finalize", finalize_agent)
+graph.add_node("instagram", instagram_agent)
 
 graph.set_entry_point("download")
 
@@ -30,7 +32,8 @@ graph.add_edge("highlight", "editing")
 graph.add_edge("editing", "caption")
 graph.add_edge("caption", "approval")
 graph.add_edge("approval", "finalize")
-graph.add_edge("finalize", END)
+graph.add_edge("finalize", "instagram")
+graph.add_edge("instagram", END)
 
 ck = InMemorySaver()
 

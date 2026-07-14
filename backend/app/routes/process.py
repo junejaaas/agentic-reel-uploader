@@ -61,6 +61,6 @@ def approve(data: ApproveRequest):
     )
 
     return {
-        "status": "completed",
-        "highlights": result["highlights"]
+        "status": "uploaded",
+        "message": "Approved clips uploaded successfully."
     }

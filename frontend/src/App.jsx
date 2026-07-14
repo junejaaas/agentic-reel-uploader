@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Processing from "./pages/Processing";
 import Results from "./pages/Results";
+import Success from "./pages/Success";
 
 // Page transition wrapper
 function PageTransition({ children }) {
@@ -63,6 +64,15 @@ function AppRoutes({ youtubeUrl, setYoutubeUrl, jobResult, setJobResult }) {
             element={
               <PageTransition>
                 <Results jobResult={jobResult} />
+                <Footer />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/success"
+            element={
+              <PageTransition>
+                <Success />
                 <Footer />
               </PageTransition>
             }
